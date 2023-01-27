@@ -61,12 +61,14 @@
                         <p>${data.message}</p>
                     </div>`
                 document.querySelector('#chat-messages').innerHTML += html
+
+                scrollToBottom()
             } else {
                 alert("The message was empty")
             }
         };
 
-        //
+        // submit message
 
         document.querySelector('#chat-message-submit').onclick = function (e) {
             e.preventDefault();
@@ -80,6 +82,13 @@
             }));
 
             messageInputDom.value = ''
+        }
+
+        // scroll
+
+        function scrollToBottom(){
+            const objDiv = document.querySelector('#chat-messages')
+            objDiv.scrollTop = objDiv.scrollHeight
         }
     </script>
 {% endblock %}
