@@ -25,7 +25,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/rooms/'
@@ -34,6 +34,7 @@ LOGIN_URL = '/login/'
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
