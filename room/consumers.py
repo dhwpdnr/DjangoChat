@@ -59,3 +59,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
         user = User.objects.get(username=username)
         room = Room.objects.get(slug=room)
         Message.objects.create(user=user, room=room, content=message)
+
+        # 동기 메소드 -> 비동기 함수내에서 사용하려면 비동기 (코루틴 함수로 만들어야함)
