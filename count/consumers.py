@@ -3,14 +3,11 @@ import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 from asgiref.sync import sync_to_async
 
-from django.contrib.auth.models import User
-from .models import Room, Message
-
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
-        self.room_group_name = 'chat_%s' % self.room_name
+        self.room_group_name = 'test_%s' % self.room_name
 
         await self.channel_layer.group_add(
             self.room_group_name,
@@ -54,10 +51,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
             'room': room
         }))
 
-    @sync_to_async
-    def save_message(self, username, room, message):
-        user = User.objects.get(username=username)
-        room = Room.objects.get(slug=room)
-        Message.objects.create(user=user, room=room, content=message)
+    # @sync_to_async
+    # def save_message(self, username, room, message):
+    #     user = User.objects.get(username=username)
+    #     room = Room.objects.get(slug=room)
+    #     Message.objects.create(user=user, room=room, content=message)
 
-        # 동기 메소드 -> 비동기 함수내에서 사용하려면 비동기 (코루틴 함수로 만들어야함)
+    # 동기 메소드 -> 비동기 함수내에서 사용하려면 비동기 (코루틴 함수로 만들어야함)
